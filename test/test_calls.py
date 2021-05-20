@@ -1,15 +1,15 @@
 from unittest import TestCase
 from pydantic import ValidationError
 
-from src.calls import Call, get_final_risk_score
-from test.util import load_test_data
+from src.calls import Call
+from src.util import load_data
 
 
 class TestCalls(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        test_data = load_test_data('calls.json')
+        test_data = load_data('calls.json', test=True)
         cls.calls = [Call(**call_dict) for call_dict in test_data]
 
     def test_read_calls(self):
@@ -31,7 +31,7 @@ class TestCalls(TestCase):
 
     def test_attributes(self):
         attr = self.calls[0].attributes
-        self.assertEqual(attr.date, "2020-10-12T07:20:50.52Z")
+        self.assertEqual(attr.date, "2020-10-12T07:20:50Z")
         self.assertEqual(attr.riskScore, 0.431513435443)
         self.assertEqual(attr.number, "+44123456789")
         self.assertTrue(attr.greenList)
@@ -46,14 +46,14 @@ class TestCalls(TestCase):
             Call(attributes={'date': "2020-10-12"})
 
     def test_final_risk_score_list(self):
-        self.assertEqual(get_final_risk_score(self.calls[0]), 0)
-        self.assertEqual(get_final_risk_score(self.calls[1]), 1)
+        self.assertEqual(self.calls[0].get_final_risk_score(), 0)
+        self.assertEqual(self.calls[1].get_final_risk_score(), 1)
 
     def test_final_risk_score_not_list(self):
         rs_call = Call(attributes={'riskScore': 0.123,
                                    'greenList': False,
                                    'redList': False})
-        self.assertEqual(get_final_risk_score(rs_call), 0.2)
+        self.assertEqual(rs_call.get_final_risk_score(), 0.2)
 
 
 

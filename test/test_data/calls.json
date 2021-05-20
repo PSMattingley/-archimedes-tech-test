@@ -4,7 +4,7 @@
       "type": "call",
       "id": "2c4fae60-cf43-4f27-869e-a9ed8b0ca25b",
       "attributes": {
-        "date": "2020-10-12T07:20:50.52Z",
+        "date": "2020-10-12T07:20:50Z",
         "riskScore": 0.431513435443,
         "number": "+44123456789",
         "greenList": true,
@@ -15,7 +15,7 @@
       "type": "call",
       "id": "8f1b1354-26d2-4e16-9582-9156a0d9a5de",
       "attributes": {
-        "date": "2019-10-12T07:20:50.52Z",
+        "date": "2019-10-12T07:20:50Z",
         "riskScore": 0.123444,
         "number": "+44123456789",
         "greenList": false,

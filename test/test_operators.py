@@ -1,14 +1,14 @@
 from unittest import TestCase
 
 from src.operators import Operator
-from test.util import load_test_data
+from src.util import load_data
 
 
 class TestOperators(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        test_data = load_test_data('operators.json')
+        test_data = load_data('operators.json', test=True)
         cls.operators = [Operator(**op_dict) for op_dict in test_data]
 
     def test_read_operators(self):
