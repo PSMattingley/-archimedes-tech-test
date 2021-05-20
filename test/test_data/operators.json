@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "type": "operator",
+      "id": "2c4fae60-cf43-4f27-869e-a9ed8b0ca25b",
+      "attributes": {
+        "prefix": "1000",
+        "operator": "Vodafone"
+      }
+    },
+    {
+      "type": "operator",
+      "id": "8f1b1354-26d2-4e16-9582-9156a0d9a5de",
+      "attributes": {
+        "prefix": "2000",
+        "operator": "EE"
+      }
+    }
+  ]
+}
