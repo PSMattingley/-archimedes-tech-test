@@ -1,7 +1,7 @@
 from unittest import TestCase
 from pydantic import ValidationError
 
-from src.calls import Call
+from src.calls import Call, get_final_risk_score
 from test.util import load_test_data
 
 
@@ -41,9 +41,19 @@ class TestCalls(TestCase):
         with self.assertRaises(ValidationError):
             Call(attributes={'riskScore': 1.5})
 
-    
+    def test_invalid_date(self):
+        with self.assertRaises(ValidationError):
+            Call(attributes={'date': "2020-10-12"})
 
+    def test_final_risk_score_list(self):
+        self.assertEqual(get_final_risk_score(self.calls[0]), 0)
+        self.assertEqual(get_final_risk_score(self.calls[1]), 1)
 
+    def test_final_risk_score_not_list(self):
+        rs_call = Call(attributes={'riskScore': 0.123,
+                                   'greenList': False,
+                                   'redList': False})
+        self.assertEqual(get_final_risk_score(rs_call), 0.2)
 
 
 
